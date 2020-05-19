@@ -12,20 +12,17 @@ namespace DemoCleanArch.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Todo> builder)
         {
-            builder.HasKey(e => e.TodoId);
-            
             builder.Property(e => e.Title)
                 .IsRequired()
                 .HasMaxLength(150);
-
-            builder.Property(e => e.CreationTime);
-            builder.Property(e => e.UpdatedTime);
 
             builder.HasData(Enumerable.Range(1,5)
                 .Select(x => new Todo
                 {
                     TodoId = x,
-                    Title = $"Title {x}"
+                    Title = $"Title {x}",
+                    Created = DateTime.Now,
+                    CreatedBy = "Migration"
                 }).ToList());
         }
     }

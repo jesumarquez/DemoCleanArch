@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DemoCleanArch.Domain.Interfaces
 {
-    public interface ITodoRepository
+    public interface ITodoRepository: IBaseRepository<Todo>
     {
-        Task<IEnumerable<Todo>> GetAll();
     }
 }
