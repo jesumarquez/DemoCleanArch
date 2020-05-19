@@ -19,10 +19,31 @@ namespace DemoCleanArch.Infrastructure.Repositories
                     Title = $"Title {x}" 
                 }).ToList();
         }
+
+        public Task Add(Todo entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(Todo entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Todo>> GetAll()
         {
             await Task.Delay(10);
             return _todos;
+        }
+
+        public Task<Todo> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Todo entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
