@@ -7,6 +7,7 @@ namespace DemoCleanArch.Web.Services
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
+            //this.UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
             this.UserId = httpContextAccessor.HttpContext?.User?.Identity.Name;
         }
         public string UserId { get; }

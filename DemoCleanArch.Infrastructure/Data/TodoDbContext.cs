@@ -37,7 +37,6 @@ namespace DemoCleanArch.Infrastructure.Data
         {
             foreach(var entry in ChangeTracker.Entries<AuditEntity>())
             {
-                //TODO: implementar current user
                 switch (entry.State)
                 {
                     case EntityState.Added:
