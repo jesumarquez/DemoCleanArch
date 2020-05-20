@@ -8,13 +8,13 @@ using System.Text;
 
 namespace DemoCleanArch.Infrastructure.Data
 {
-    public partial class TodoContext: DbContext
+    public partial class TodoDbContext: DbContext
     {
-        public TodoContext()
+        public TodoDbContext()
         {
         }
 
-        public TodoContext(DbContextOptions<TodoContext> options): base(options)
+        public TodoDbContext(DbContextOptions<TodoDbContext> options): base(options)
         {
         }
 
