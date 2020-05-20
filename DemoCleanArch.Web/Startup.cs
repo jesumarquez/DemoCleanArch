@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using DemoCleanArch.Domain.Interfaces;
 using DemoCleanArch.Domain.Services;
 using DemoCleanArch.Infrastructure.Data;
@@ -38,9 +40,12 @@ namespace DemoCleanArch.Web
                 options.UseSqlServer(Configuration.GetConnectionString("Todo"));
             });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<ITodoRepository, TodoSqlRepository>();
             services.AddTransient<ITodoService, TodoService>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
             services.AddControllers();
         }
 
