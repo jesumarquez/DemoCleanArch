@@ -1,5 +1,6 @@
 ﻿using DemoCleanArch.Domain.Common;
 using DemoCleanArch.Domain.Entities;
+using DemoCleanArch.Domain.Interfaces;
 using DemoCleanArch.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,12 +14,14 @@ namespace DemoCleanArch.Infrastructure.Data
 {
     public partial class TodoDbContext: DbContext
     {
+        ICurrentUserService _currentUserService;
         public TodoDbContext()
         {
         }
 
-        public TodoDbContext(DbContextOptions<TodoDbContext> options): base(options)
+        public TodoDbContext(DbContextOptions<TodoDbContext> options, ICurrentUserService currentUserService): base(options)
         {
+            _currentUserService = currentUserService;
         }
 
         public virtual DbSet<Todo> Todo { get; set; }
@@ -38,11 +41,11 @@ namespace DemoCleanArch.Infrastructure.Data
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = string.Empty;
+                        entry.Entity.CreatedBy = _currentUserService.UserId;
                         entry.Entity.Created = DateTime.UtcNow;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = string.Empty;
+                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
                         entry.Entity.LastModified = DateTime.UtcNow;
                         break;
                 }
