@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DemoCleanArch.Domain.Interfaces;
+using DemoCleanArch.Domain.Services;
 using DemoCleanArch.Infrastructure.Data;
 using DemoCleanArch.Infrastructure.Repositories;
 using DemoCleanArch.Web.Services;
@@ -39,6 +40,7 @@ namespace DemoCleanArch.Web
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<ITodoRepository, TodoSqlRepository>();
+            services.AddTransient<ITodoService, TodoService>();
             services.AddControllers();
         }
 
