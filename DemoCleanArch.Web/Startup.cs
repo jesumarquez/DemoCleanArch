@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
+using DemoCleanArch.Domain;
 using DemoCleanArch.Domain.Interfaces;
+using DemoCleanArch.Domain.Services;
+using DemoCleanArch.Infrastructure;
 using DemoCleanArch.Infrastructure.Data;
 using DemoCleanArch.Infrastructure.Repositories;
 using DemoCleanArch.Web.Services;
@@ -32,13 +37,13 @@ namespace DemoCleanArch.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("Todo"));
-            });
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
+            services.AddAplication();
+            services.AddInfraestructure(Configuration);
+            
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<ITodoRepository, TodoSqlRepository>();
+
             services.AddControllers();
         }
 

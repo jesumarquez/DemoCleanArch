@@ -13,16 +13,16 @@ namespace DemoCleanArch.Web.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        private ITodoRepository _todoRepository;
+        private ITodoService _todoService;
 
-        public TodoController(ITodoRepository todoRepository)
+        public TodoController(ITodoService todoService)
         {
-            _todoRepository = todoRepository;
+            _todoService = todoService;
         }
 
         public async Task<IActionResult> Get()
         {
-            return Ok(await _todoRepository.GetAll());
+            return Ok(await _todoService.GetAll());
         }
     }
 }
