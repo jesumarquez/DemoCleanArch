@@ -12,9 +12,9 @@ namespace DemoCleanArch.Infrastructure.Repositories
 {
     public class TodoSqlRepository : ITodoRepository
     {
-        readonly TodoContext _context;
+        readonly TodoDbContext _context;
 
-        public TodoSqlRepository(TodoContext context)
+        public TodoSqlRepository(TodoDbContext context)
         {
             _context = context;
         }
