@@ -22,7 +22,7 @@ namespace DemoCleanArch.Infrastructure
             });
             services.AddTransient<ITodoRepository, TodoSqlRepository>();
             
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<TodoDbContext>();
 
             //services.AddIdentityServer()
