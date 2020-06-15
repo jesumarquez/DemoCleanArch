@@ -71,6 +71,11 @@ namespace DemoCleanArch.Web
                 app.UseOpenApi();
                 app.UseSwaggerUi3();
             }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+                app.UseExceptionHandler("/Error");
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
