@@ -67,7 +67,8 @@ namespace DemoCleanArch.Web
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
                 app.UseOpenApi();
                 app.UseSwaggerUi3();
             }
