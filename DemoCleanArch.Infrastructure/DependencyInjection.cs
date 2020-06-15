@@ -1,6 +1,7 @@
 ﻿using DemoCleanArch.Domain.Interfaces;
 using DemoCleanArch.Infrastructure.Data;
 using DemoCleanArch.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,12 @@ namespace DemoCleanArch.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("Todo"));
             });
             services.AddTransient<ITodoRepository, TodoSqlRepository>();
+            
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<TodoDbContext>();
+
+            //services.AddIdentityServer()
+            //    .AddApiAuthorization<IdentityUser, TodoDbContext>();
 
             return services;
         }

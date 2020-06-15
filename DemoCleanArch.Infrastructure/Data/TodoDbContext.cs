@@ -2,6 +2,7 @@
 using DemoCleanArch.Domain.Entities;
 using DemoCleanArch.Domain.Interfaces;
 using DemoCleanArch.Infrastructure.Data.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DemoCleanArch.Infrastructure.Data
 {
-    public partial class TodoDbContext: DbContext
+    public partial class TodoDbContext: IdentityDbContext
     {
         ICurrentUserService _currentUserService;
         public TodoDbContext()
