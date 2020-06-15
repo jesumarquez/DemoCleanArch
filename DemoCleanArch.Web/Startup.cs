@@ -74,6 +74,7 @@ namespace DemoCleanArch.Web
             else
             {
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseHttpsRedirection();

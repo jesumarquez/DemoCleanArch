@@ -19,5 +19,10 @@ namespace DemoCleanArch.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Exception()
+        {
+            throw new NotImplementedException("The method was not implemented");
+        }
     }
 }
