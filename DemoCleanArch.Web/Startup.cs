@@ -11,6 +11,7 @@ using DemoCleanArch.Infrastructure;
 using DemoCleanArch.Infrastructure.Data;
 using DemoCleanArch.Infrastructure.Repositories;
 using DemoCleanArch.Web.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -60,6 +61,19 @@ namespace DemoCleanArch.Web
                 //options.Password.RequiredLength = 6;
                 //options.Password.RequiredUniqueChars = 1;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.Cookie.Name = "DemoCleaArchCookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Login/Login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,7 +103,6 @@ namespace DemoCleanArch.Web
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
-
             });
         }
     }

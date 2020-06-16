@@ -1,0 +1,17 @@
+﻿@using DemoCleanArch.Web.Models
+@model LoginViewModel
+
+@{ 
+    ViewBag.Title = "Login";
+}
+
+<h1>Login</h1>
+@{
+    using (Html.BeginForm(FormMethod.Post))
+    {
+        @Html.ValidationSummary();
+        <input name="Email">
+        <input name="Password">
+        <button type="submit">Login</button>
+    }
+}
